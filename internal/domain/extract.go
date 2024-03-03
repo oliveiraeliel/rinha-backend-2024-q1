@@ -8,16 +8,16 @@ type Extract struct {
 }
 
 type ExtractHeader struct {
-	Balance     int     `json:"saldo"`
-	Limit       int     `json:"limite"`
+	Total       int       `json:"total"`
+	Limit       int       `json:"limite"`
 	GeneratedAt time.Time `json:"data_extrato"`
 }
 
 type LastTransaction struct {
-	Value       int  `json:"valor"`
-	Type        string `json:"tipo"`
-	Description string `json:"descricao"`
-	CreatedAt   time.Time  `json:"realizado_em"`
+	Value       int       `json:"valor"`
+	Type        string    `json:"tipo"`
+	Description string    `json:"descricao"`
+	CreatedAt   time.Time `json:"realizado_em"`
 }
 
 func NewExtact(header ExtractHeader) Extract {

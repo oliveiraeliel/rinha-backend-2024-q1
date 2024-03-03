@@ -11,7 +11,7 @@ import (
 func main() {
 	db, err := pgxpool.Connect(
 		context.Background(),
-		"postgresql://postgres:123@localhost:5433/rinha",
+		"postgresql://postgres:123@db:5432/rinha",
 	)
 
 	if err != nil {

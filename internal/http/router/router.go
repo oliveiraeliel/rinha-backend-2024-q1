@@ -12,11 +12,11 @@ func Run(transactionRepository transaction.TransactionRepository) {
 	transactionService := transaction.NewTransactionService(transactionRepository)
 	transactionController := controller.NewTransactionController(transactionService)
 
-	v := router.Group("/api/cliente/:id")
+	v := router.Group("/clientes/:id")
 	{
-		v.POST("/transacao", transactionController.CreateTransactionHandler)
+		v.POST("/transacoes", transactionController.CreateTransactionHandler)
 		v.GET("/extrato", transactionController.GetExtractHandler)
 	}
 
-	router.Run()
+	router.Run(":3000")
 }

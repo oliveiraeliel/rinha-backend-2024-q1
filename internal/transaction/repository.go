@@ -15,7 +15,7 @@ type TransactionRepository interface {
 }
 
 type repository struct {
-	db *pgxpool.Pool
+	db    *pgxpool.Pool
 }
 
 func NewTransactionRepository(db *pgxpool.Pool) TransactionRepository {
@@ -73,13 +73,13 @@ func (r *repository) getClientBalance(ctx context.Context, clientId int) (domain
 	if err != nil {
 		return domain.ExtractHeader{}, false
 	}
-	
+
 	extractHeader := domain.ExtractHeader{
 		GeneratedAt: time.Now(),
-		Limit: limite,
-		Balance: saldo,	
+		Limit:       limite,
+		Total:     saldo,
 	}
-	
+
 	return extractHeader, true
 }
 
@@ -95,7 +95,7 @@ func (r *repository) GetExtract(ctx context.Context, clientId int) (domain.Extra
 		`SELECT valor, tipo, descricao, realizada_em
 		FROM transacoes
 		WHERE cliente_id=$1
-		ORDER BY realizada_em DESC;`,
+		ORDER BY realizada_em DESC LIMIT 10;`,
 		clientId,
 	)
 
